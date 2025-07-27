@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu Éducatif - Mascotte</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 10px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 450px;
+            width: 100%;
+            min-height: 60vh;
+        }
+
+        .mascotte {
+            width: 100px;
+            height: 100px;
+            background: #ffdd59;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            animation: bounce 2s infinite;
+            box-shadow: 0 4px 15px rgba(255, 221, 89, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .title {
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .audio-container {
+            margin: 20px 0;
+        }
+
+        audio {
+            width: 100%;
+            margin: 15px 0;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 100px;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            touch-action: manipulation;
+        }
+
+        .btn:hover, .btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-menu {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .btn-menu:hover {
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .btn-icon {
+            font-size: 16px;
+        }
+
+        .track-title {
+            font-size: 18px;
+            margin: 15px 0;
+            color: #ffdd59;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .menu {
+            display: block;
+        }
+
+        .player {
+            display: none;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.15);
+            margin: 12px 0;
+            padding: 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: block;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item:hover, .menu-item:focus {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .menu-item-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-item-desc {
+            font-size: 13px;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+
+        .url-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 12px;
+            border-left: 4px solid #ffdd59;
+            backdrop-filter: blur(5px);
+        }
+
+        .url-list {
+            text-align: left;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .url-list div {
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #ffcccb;
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .debug-info {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #b3ffff;
+            text-align: left;
+            line-height: 1.4;
+            font-size: 11px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+                max-width: 100%;
+                min-height: 70vh;
+            }
+
+            .mascotte {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+                margin-bottom: 15px;
+            }
+
+            .title {
+                font-size: 20px;
+                margin-bottom: 6px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .track-title {
+                font-size: 16px;
+                margin: 12px 0;
+            }
+
+            .controls {
+                gap: 6px;
+                margin-top: 20px;
+            }
+
+            .btn {
+                padding: 14px 16px;
+                font-size: 12px;
+                min-width: 90px;
+                flex: 1;
+                max-width: 120px;
+            }
+
+            .menu-item {
+                padding: 14px;
+                margin: 10px 0;
+                border-radius: 12px;
+            }
+
+            .menu-item-title {
+                font-size: 15px;
+            }
+
+            .menu-item-desc {
+                font-size: 12px;
+            }
+
+            .progress {
+                padding: 10px 16px;
+                font-size: 13px;
+                margin: 15px 0;
+            }
+
+            .url-info {
+                font-size: 11px;
+                padding: 12px;
+            }
+
+            audio {
+                margin: 12px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mascotte">🎭</div>
+        <h1 class="title">Jeu Éducatif</h1>
+        
+        <!-- Menu principal -->
+        <div id="menu" class="menu">
+            <p class="subtitle">Choisissez votre piste ou scannez un QR code spécifique !</p>
+            
+            <div id="menuItems">
+                <div class="loading"></div>
+                <p>Chargement de la configuration...</p>
+            </div>
+
+            <div class="debug-info" id="debugInfo" style="display: none;">
+                <strong>🔍 Debug Info:</strong>
+                <div id="debugContent"></div>
+            </div>
+
+            <div class="url-info" id="urlInfo" style="display: none;">
+                <strong>📱 URLs pour vos QR codes :</strong>
+                <div class="url-list" id="urlList"></div>
+            </div>
+        </div>
+
+        <!-- Lecteur audio -->
+        <div id="player" class="player">
+            <p class="subtitle">Écoutez votre mascotte !</p>
+            
+            <div class="track-title" id="trackTitle">Piste</div>
+            
+            <div class="audio-container">
+                <audio id="audioPlayer" controls preload="metadata">
+                    <source id="audioSource1" src="" type="audio/mp4">
+                    <source id="audioSource2" src="" type="audio/mpeg">
+                    <source id="audioSource3" src="" type="audio/aac">
+                    Votre navigateur ne supporte pas l'audio HTML5.
+                </audio>
+            </div>
+            
+            <div class="progress" id="progress">Piste</div>
+            
+            <div class="controls">
+                <a id="prevBtn" href="" class="btn" style="display: none;">
+                    <span class="btn-icon">⬅️</span>
+                    <span>Précédent</span>
+                </a>
+                
+                <a href="?" class="btn btn-menu">
+                    <span class="btn-icon">🏠</span>
+                    <span>Menu</span>
+                </a>
+                
+                <a id="nextBtn" href="" class="btn" style="display: none;">
+                    <span>Suivant</span>
+                    <span class="btn-icon">➡️</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let tracks = [];
+        let currentTrack = 0;
+        let debugMode = true; // Activer le debug
+
+        // Éléments DOM
+        const menuDiv = document.getElementById('menu');
+        const playerDiv = document.getElementById('player');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource1 = document.getElementById('audioSource1');
+        const audioSource2 = document.getElementById('audioSource2');
+        const audioSource3 = document.getElementById('audioSource3');
+        const trackTitle = document.getElementById('trackTitle');
+        const progress = document.getElementById('progress');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const menuItems = document.getElementById('menuItems');
+        const urlList = document.getElementById('urlList');
+        const urlInfo = document.getElementById('urlInfo');
+        const debugInfo = document.getElementById('debugInfo');
+        const debugContent = document.getElementById('debugContent');
+
+        // Fonction de debug
+        function debug(message) {
+            console.log(`🔍 DEBUG: ${message}`);
+            if (debugMode) {
+                const time = new Date().toLocaleTimeString();
+                debugContent.innerHTML += `<div>[${time}] ${message}</div>`;
+                debugInfo.style.display = 'block';
+            }
+        }
+
+        // Fonction pour tester l'existence d'un fichier
+        async function testFileExists(url) {
+            try {
+                debug(`Test de l'URL: ${url}`);
+                const response = await fetch(url, { method: 'HEAD' });
+                const exists = response.ok;
+                debug(`Résultat pour ${url}: ${exists ? 'OK' : 'ERREUR ' + response.status}`);
+                return exists;
+            } catch (error) {
+                debug(`Erreur de test pour ${url}: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Fonction pour charger la configuration depuis le fichier JSON
+        async function loadConfiguration() {
+            try {
+                debug('Chargement de config.json...');
+                const response = await fetch('config.json?v=' + Date.now()); // Cache busting
+                
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+                
+                const config = await response.json();
+                tracks = config.pistes || [];
+                
+                debug(`Configuration chargée: ${tracks.length} piste(s)`);
+                
+                // Tester l'existence de chaque fichier audio
+                for (let i = 0; i < tracks.length; i++) {
+                    const track = tracks[i];
+                    const audioUrl = `audio/${track.file}`;
+                    const exists = await testFileExists(audioUrl);
+                    track.fileExists = exists;
+                    debug(`Fichier ${track.file}: ${exists ? 'TROUVÉ' : 'NON TROUVÉ'}`);
+                }
+                
+                return tracks;
+                
+            } catch (error) {
+                debug(`ERREUR lors du chargement: ${error.message}`);
+                
+                // Configuration de secours
+                tracks = [
+                    {
+                        file: "voix1-accent-fribourgeois.m4a",
+                        title: "Voix 1 (Config par défaut)",
+                        emoji: "🎬",
+                        description: "Configuration de secours",
+                        fileExists: false
+                    },
+                    {
+                        file: "voix3-accent-fribourgeois.m4a",
+                        title: "Voix 3 (Config par défaut)", 
+                        emoji: "🎭",
+                        description: "Configuration de secours",
+                        fileExists: false
+                    }
+                ];
+                
+                menuItems.innerHTML = `
+                    <div class="error">
+                        <strong>⚠️ Impossible de charger config.json</strong><br><br>
+                        Erreur: ${error.message}<br><br>
+                        Utilisation de la configuration par défaut...
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    generateMenu();
+                }, 3000);
+                
+                return tracks;
+            }
+        }
+
+        // Fonction pour construire l'URL avec paramètre
+        function buildUrl(pisteNumber) {
+            return window.location.origin + window.location.pathname + '?piste=' + pisteNumber;
+        }
+
+        // Fonction pour obtenir le paramètre de l'URL
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Fonction pour générer le menu dynamiquement
+        function generateMenu() {
+            menuItems.innerHTML = '';
+            urlList.innerHTML = '';
+            
+            if (tracks.length === 0) {
+                menuItems.innerHTML = `
+                    <div class="error">
+                        <strong>⚠️ Aucune piste configurée</strong><br>
+                        Vérifiez votre fichier config.json
+                    </div>
+                `;
+                return;
+            }
+            
+            tracks.forEach((track, index) => {
+                // Indicateur de statut du fichier
+                const statusIcon = track.fileExists ? '✅' : '❌';
+                const statusText = track.fileExists ? 'Fichier OK' : 'Fichier manquant';
+                
+                // Créer l'élément du menu
+                const menuItem = document.createElement('a');
+                menuItem.href = buildUrl(index + 1);
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <div class="menu-item-title">
+                        <span>${track.emoji}</span>
+                        <span>${track.title}</span>
+                        <span style="font-size: 12px;">${statusIcon}</span>
+                    </div>
+                    <div class="menu-item-desc">${track.description} (${statusText})</div>
+                `;
+                menuItems.appendChild(menuItem);
+                
+                // Créer l'élément URL
+                const urlItem = document.createElement('div');
+                urlItem.innerHTML = `<strong>${track.title} :</strong> ${buildUrl(index + 1)}`;
+                urlList.appendChild(urlItem);
+            });
+            
+            urlInfo.style.display = 'block';
+        }
+
+        // Fonction pour charger une piste
+        function loadTrack(index) {
+            if (index >= 0 && index < tracks.length) {
+                const track = tracks[index];
+                currentTrack = index;
+                
+                debug(`Chargement de la piste ${index + 1}: ${track.file}`);
+                
+                // Construire les URLs avec différents encodages
+                const baseUrl = `audio/${track.file}`;
+                const encodedUrl = `audio/${encodeURIComponent(track.file)}`;
+                
+                debug(`URL de base: ${baseUrl}`);
+                debug(`URL encodée: ${encodedUrl}`);
+                
+                // Configurer les sources audio avec différents types MIME
+                audioSource1.src = baseUrl;
+                audioSource1.type = "audio/mp4"; // .m4a
+                
+                audioSource2.src = encodedUrl;
+                audioSource2.type = "audio/mpeg"; // fallback
+                
+                audioSource3.src = baseUrl;
+                audioSource3.type = "audio/aac"; // autre fallback pour .m4a
+                
+                // Recharger l'élément audio
+                audioPlayer.load();
+                
+                // Mettre à jour l'interface
+                trackTitle.textContent = `${track.emoji} ${track.title}`;
+                progress.textContent = `Piste ${index + 1} sur ${tracks.length}`;
+                
+                // Mise à jour des liens de navigation
+                if (index > 0) {
+                    prevBtn.href = buildUrl(index);
+                    prevBtn.style.display = 'inline-flex';
+                } else {
+                    prevBtn.style.display = 'none';
+                }
+                
+                if (index < tracks.length - 1) {
+                    nextBtn.href = buildUrl(index + 2);
+                    nextBtn.style.display = 'inline-flex';
+                } else {
+                    nextBtn.style.display = 'none';
+                }
+                
+                // Afficher le lecteur
+                menuDiv.style.display = 'none';
+                playerDiv.style.display = 'block';
+                
+                // Tentative de lecture automatique
+                setTimeout(() => {
+                    audioPlayer.play().catch(e => {
+                        debug('Lecture automatique bloquée par le navigateur');
+                    });
+                }, 500);
+            }
+        }
+
+        // Événements audio améliorés
+        audioPlayer.addEventListener('loadstart', function() {
+            debug('Début du chargement audio');
+        });
+
+        audioPlayer.addEventListener('canplay', function() {
+            debug('✅ Audio prêt à être joué');
+        });
+
+        audioPlayer.addEventListener('loadeddata', function() {
+            debug('✅ Données audio chargées');
+        });
+
+        audioPlayer.addEventListener('error', function(e) {
+            const error = audioPlayer.error;
+            let errorMsg = 'Erreur audio inconnue';
+            
+            if (error) {
+                switch(error.code) {
+                    case error.MEDIA_ERR_ABORTED:
+                        errorMsg = 'Chargement interrompu';
+                        break;
+                    case error.MEDIA_ERR_NETWORK:
+                        errorMsg = 'Erreur réseau';
+                        break;
+                    case error.MEDIA_ERR_DECODE:
+                        errorMsg = 'Erreur de décodage';
+                        break;
+                    case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                        errorMsg = 'Format audio non supporté';
+                        break;
+                }
+            }
+            
+            debug(`❌ Erreur audio: ${errorMsg}`);
+            console.error('Détails erreur audio:', e);
+            
+            alert(`❌ Impossible de lire: "${tracks[currentTrack].file}"\n\nErreur: ${errorMsg}\n\nVérifiez que le fichier existe et est accessible.`);
+        });
+
+        // Lecture automatique de la piste suivante
+        audioPlayer.addEventListener('ended', function() {
+            debug('Piste terminée');
+            if (currentTrack < tracks.length - 1) {
+                debug('Passage à la piste suivante dans 1.5s');
+                setTimeout(() => {
+                    window.location.href = buildUrl(currentTrack + 2);
+                }, 1500);
+            }
+        });
+
+        // Support des touches du clavier
+        document.addEventListener('keydown', function(e) {
+            if (playerDiv.style.display === 'block') {
+                switch(e.code) {
+                    case 'Space':
+                        e.preventDefault();
+                        audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause();
+                        break;
+                    case 'ArrowLeft':
+                        if (currentTrack > 0) window.location.href = buildUrl(currentTrack);
+                        break;
+                    case 'ArrowRight':
+                        if (currentTrack < tracks.length - 1) window.location.href = buildUrl(currentTrack + 2);
+                        break;
+                    case 'Escape':
+                        window.location.href = '?';
+                        break;
+                }
+            }
+        });
+
+        // Initialisation au chargement de la page
+        document.addEventListener('DOMContentLoaded', async function() {
+            debug('🚀 Initialisation du lecteur audio optimisé pour .m4a');
+            debug(`URL actuelle: ${window.location.href}`);
+            
+            // Charger la configuration
+            await loadConfiguration();
+            
+            // Générer le menu
+            generateMenu();
+            
+            // Vérifier les paramètres URL
+            const pisteParam = getUrlParameter('piste');
+            
+            if (pisteParam && tracks.length > 0) {
+                const pisteIndex = parseInt(pisteParam) - 1;
+                if (pisteIndex >= 0 && pisteIndex < tracks.length) {
+                    debug(`▶️ Chargement de la piste ${pisteIndex + 1}`);
+                    loadTrack(pisteIndex);
+                } else {
+                    debug('❌ Numéro de piste invalide');
+                    menuDiv.style.display = 'block';
+                    playerDiv.style.display = 'none';
+                }
+            } else {
+                debug('📋 Affichage du menu principal');
+                menuDiv.style.display = 'block';
+                playerDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

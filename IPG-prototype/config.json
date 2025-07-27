@@ -1,0 +1,16 @@
+{
+  "pistes": [
+    {
+      "file": "voix1-accent-fribourgeois.m4a",
+      "title": "Voix 1",
+      "emoji": "🎬",
+      "description": "Test 1"
+    },
+    {
+      "file": "voix3-accent-fribourgeois.m4a",
+      "title": "Voix 3",
+      "emoji": "🎭",
+      "description": "Test 2"
+    }
+  ]
+}
