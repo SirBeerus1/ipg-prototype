@@ -1,88 +1,88 @@
 {
   "pistes": [
     {
-      "file": "Voix 1 - Accent Fribourgeois romand.m4a",
+      "file": "voix-1-accent-fribourgeois.m4a",
       "title": "Voix 1 - Accent Fribourgeois",
       "emoji": "🎬",
-      "description": "Première voix avec accent fribourgeois"
+      "description": "Test 1 - voix avec accent fribourgeois"
     },
     {
-      "file": "Voix 3 - Accent Fribourgeois romand.m4a",
+      "file": "voix-3-accent-fribourgeois.m4a",
       "title": "Voix 3 - Accent Fribourgeois",
       "emoji": "🎭",
-      "description": "Troisième voix avec accent fribourgeois"
+      "description": "Test 2 - voix avec accent fribourgeois"
     },
     {
       "file": "Introduction-1.mp3",
       "title": "Introduction - Partie 1",
       "emoji": "🚀",
-      "description": "Première introduction au jeu"
+      "description": "Introduction au jeu - voix-1"
     },
     {
       "file": "Introduction-2.mp3",
       "title": "Introduction - Partie 2", 
       "emoji": "📖",
-      "description": "Suite de l'introduction"
+      "description": "Introduction au jeu - voix-2"
     },
     {
       "file": "Presentation-4-zones_1.mp3",
       "title": "Présentation des 4 Zones - Partie 1",
       "emoji": "🗺️",
-      "description": "Découverte des zones de jeu"
+      "description": "Découverte des zones de jeu - voix-1"
     },
     {
       "file": "Presentation-4-zones-2.mp3",
       "title": "Présentation des 4 Zones - Partie 2",
       "emoji": "🌍",
-      "description": "Détails sur les zones d'aventure"
+      "description": "Découverte des zones de jeu - voix-2"
     },
     {
       "file": "Lancement-aventure-1.mp3",
       "title": "Lancement Aventure - Partie 1",
       "emoji": "🏁",
-      "description": "Début de votre aventure"
+      "description": "Début de votre aventure - voix1"
     },
     {
       "file": "Lancement-aventure-2.mp3",
       "title": "Lancement Aventure - Partie 2",
       "emoji": "⭐",
-      "description": "C'est parti pour l'aventure !"
+      "description": "Début de votre aventure - voix2"
     },
     {
       "file": "Mission-1-Consignes_1.mp3",
       "title": "Mission 1 - Consignes",
       "emoji": "📋",
-      "description": "Instructions pour la première mission"
+      "description": "Instructions pour la première mission - voix1"
     },
     {
       "file": "Mission-1-Consignes_2.mp3",
       "title": "Mission 2 - Consignes",
       "emoji": "📝",
-      "description": "Instructions pour la deuxième mission"
+      "description": "Instructions pour la première mission - voix2"
     },
     {
       "file": "Aide-correction-mission1_1.mp3",
       "title": "Aide Mission 1 - Partie 1",
       "emoji": "💡",
-      "description": "Aide et corrections pour mission 1"
+      "description": "Aide et corrections pour mission 1 - voix1"
     },
     {
       "file": "Aide-correction-mission1_2.mp3",
       "title": "Aide Mission 1 - Partie 2",
       "emoji": "🔍",
-      "description": "Suite des corrections mission 1"
+      "description": "Aide et corrections pour mission 1 - voix2"
     },
     {
       "file": "Encouragement-mission1_1.mp3",
       "title": "Encouragement Mission 1 - Partie 1",
       "emoji": "💪",
-      "description": "Motivation pour la mission 1"
+      "description": "Encouragement pour la mission 1 - voix1"
     },
     {
       "file": "Encouragement-mission1_2.mp3",
       "title": "Encouragement Mission 1 - Partie 2",
       "emoji": "🌟",
-      "description": "Continuez, vous y êtes presque !"
+      "description": "Encouragement pour la mission 1 - voix2"
     }
   ]
 }
