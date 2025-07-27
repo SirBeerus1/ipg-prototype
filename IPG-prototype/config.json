@@ -1,13 +1,13 @@
 {
   "pistes": [
     {
-      "file": "voix-1-accent-fribourgeois.m4a",
+      "file": "voix1-accent-fribourgeois.m4a",
       "title": "Voix 1 - Accent Fribourgeois",
       "emoji": "🎬",
       "description": "Test 1 - voix avec accent fribourgeois"
     },
     {
-      "file": "voix-3-accent-fribourgeois.m4a",
+      "file": "voix3-accent-fribourgeois.m4a",
       "title": "Voix 3 - Accent Fribourgeois",
       "emoji": "🎭",
       "description": "Test 2 - voix avec accent fribourgeois"
